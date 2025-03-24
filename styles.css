@@ -477,7 +477,7 @@ canvas {
     /* Better positioning for the submit button on mobile */
     .submit-btn-container {
         position: fixed;
-        bottom: 2rem;
+        bottom: 1rem;
         left: 0;
         right: 0;
         text-align: center;
