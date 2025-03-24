@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 Vibe Coding Game Jam</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.min.js"></script>
+</head>
+<body>
+    <!-- Cityscape container positioned as fullscreen background -->
+    <div id="cityscape-container" class="cityscape-container"></div>
+    
+    <div class="scanlines"></div>
+    <div class="crt-effect"></div>
+    
+    <div class="container">
+        <div class="control-buttons">
+            <button id="musicToggle" class="control-btn" aria-label="Toggle Music">
+                <svg class="retro-icon" width="24" height="24" viewBox="0 0 24 24">
+                    <path class="music-on" d="M0 0h4v12h4v-4h4v-4h4v-4h8v4h-4v4h-4v4h-4v12h-4v-12h-4z" />
+                    <path class="music-off" d="M0 0h4v4h4v4h12v4h-12v4h-4v4h-4z" />
+                </svg>
+            </button>
+        </div>
+        
+        <header class="main-header">
+            <h1 class="retro-text">2025 Vibe Coding Game Jam</h1>
+            <p class="tagline retro-text">The first game jam for AI vibecoded games</p>
+        </header>
+        
+        <!-- Submit button container -->
+        <div class="submit-btn-container">
+            <a href="http://jam.pieter.com" class="submit-btn">Submit Your Game</a>
+        </div>
+    </div>
+
+    <!-- Modular JavaScript Files -->
+    <script src="js/storageManager.js"></script>
+    <script src="js/themeManager.js"></script>
+    <script src="js/musicSynth.js"></script>
+    <script src="js/uiAnimations.js"></script>
+    <script src="js/cityscapeGame.js"></script>
+    <script src="js/vibeJamApp.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 

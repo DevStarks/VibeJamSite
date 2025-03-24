@@ -1,0 +1,496 @@
+:root {
+    /* More readable retro video game colors */
+    --bg-color: #0a1035;
+    --card-bg: #1a2151;
+    --text-color: #e0ffe0;
+    --accent-color: #ff3366;
+    --secondary-accent: #33ccff;
+    --link-color: #ffcc00;
+    --btn-color: #ff3366;
+    --btn-hover: #ff6699;
+    --border-color: #33ccff;
+    --heading-color: #ff3366;
+    --scanline-color: rgba(224, 255, 224, 0.05);
+    --icon-color: #33ccff;
+    --icon-bg: #1a2151;
+}
+
+/* Light mode colors when .light-mode class is applied */
+.light-mode {
+    --bg-color: #e0f0ff;
+    --card-bg: #ffffff;
+    --text-color: #1a2151;
+    --accent-color: #ff3366;
+    --secondary-accent: #3366ff;
+    --link-color: #ff6600;
+    --btn-color: #ff3366;
+    --btn-hover: #ff6699;
+    --border-color: #3366ff;
+    --heading-color: #ff3366;
+    --scanline-color: rgba(26, 33, 81, 0.02);
+    --icon-color: #3366ff;
+    --icon-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: transparent;
+    color: var(--text-color);
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    text-shadow: none;
+    font-size: 16px;
+}
+
+.retro-text {
+    font-family: 'Press Start 2P', cursive;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        transparent 50%,
+        var(--scanline-color) 50%
+    );
+    background-size: 100% 4px;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    opacity: 0.5;
+}
+
+.crt-effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        rgba(0, 0, 0, 0.1) 90%,
+        rgba(0, 0, 0, 0.2) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+    pointer-events: none; /* Allow clicking through to the game */
+}
+
+.container > * {
+    pointer-events: auto; /* Re-enable pointer events for container children */
+}
+
+/* Control buttons in top right */
+.control-buttons {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.control-btn {
+    background-color: var(--icon-bg);
+    border: 2px solid var(--icon-color);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 8px rgba(51, 204, 255, 0.5);
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(51, 204, 255, 0.7);
+}
+
+.control-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 4px rgba(51, 204, 255, 0.5);
+}
+
+/* SVG Icon styling */
+.retro-icon {
+    width: 100%;
+    height: 100%;
+    fill: var(--icon-color);
+}
+
+/* Initially hide the alternative icons */
+.music-off {
+    display: none;
+}
+
+/* Music icons */
+body.music-on .music-on { 
+    display: block; 
+}
+body.music-on .music-off { 
+    display: none; 
+}
+body:not(.music-on) .music-on { 
+    display: none; 
+}
+body:not(.music-on) .music-off { 
+    display: block; 
+}
+
+/* Theme icons */
+body.light-mode .sun-icon { 
+    display: block; 
+}
+body.light-mode .moon-icon { 
+    display: none; 
+}
+body:not(.light-mode) .sun-icon { 
+    display: none; 
+}
+body:not(.light-mode) .moon-icon { 
+    display: block; 
+}
+
+.main-header {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    padding: .5rem;
+    position: relative;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--heading-color);
+    text-shadow: 
+        0 0 5px var(--accent-color),
+        0 0 10px var(--accent-color);
+    animation: glow 3s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 
+            0 0 2px var(--accent-color),
+            0 0 4px var(--accent-color);
+    }
+    to {
+        text-shadow: 
+            0 0 5px var(--accent-color),
+            0 0 10px var(--accent-color),
+            0 0 15px var(--accent-color);
+    }
+}
+
+.tagline {
+    font-size: 1rem;
+    color: var(--secondary-accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    text-shadow: 
+        0 0 3px var(--secondary-accent),
+        0 0 6px var(--secondary-accent);
+    animation: pulse 4s infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.7;
+        text-shadow: 
+            0 0 2px var(--secondary-accent),
+            0 0 4px var(--secondary-accent);
+    }
+    to {
+        opacity: 1;
+        text-shadow: 
+            0 0 3px var(--secondary-accent),
+            0 0 6px var(--secondary-accent),
+            0 0 9px var(--secondary-accent);
+    }
+}
+
+.hashtag {
+    display: inline-block;
+    font-size: 1rem;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    text-shadow: none;
+}
+
+.pixel-border {
+    border: 2px solid var(--border-color);
+    position: relative;
+    box-shadow: 
+        0 0 8px 0px var(--border-color);
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.info-card {
+    background-color: var(--card-bg);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+    color: var(--heading-color);
+    letter-spacing: 0.5px;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+}
+
+.jury-list {
+    list-style-type: none;
+}
+
+.jury-list li {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.jury-list li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.jury-list a, .sponsor {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: inline-block;
+    position: relative;
+}
+
+.jury-list a:hover, .sponsor:hover {
+    color: var(--secondary-accent);
+    text-shadow: 0 0 5px var(--secondary-accent);
+}
+
+.sponsor-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.sponsor {
+    font-size: 1.3rem;
+}
+
+.plus {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 0 1rem;
+}
+
+/* Submit button styling */
+.submit-btn-container {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.submit-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: #fff;
+    background-color: var(--btn-color);
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px var(--btn-color);
+}
+
+.submit-btn:hover {
+    background-color: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--btn-color);
+}
+
+.submit-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 5px var(--btn-color);
+}
+
+footer {
+    margin-top: 4rem;
+    text-align: center;
+    padding: 2rem;
+    border-top: 2px solid var(--accent-color);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: rgba(10, 16, 53, 0.7);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--secondary-accent);
+    box-shadow: 0 0 8px var(--secondary-accent);
+}
+
+.audio-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+#themeToggle, #musicToggle {
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Cityscape Container Styles */
+.cityscape-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    margin: 0;
+    overflow: hidden;
+    background-color: var(--card-bg);
+    border: none;
+}
+
+/* Phaser Canvas Styling */
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    h1 {
+        font-size: 1.7rem;
+    }
+
+    h1.retro-text {
+        font-size: 1.2rem;
+    }
+    
+    .retro-text {
+        font-size: 90% ;
+    }
+
+    body {
+        font-size: 15px;
+    }
+    
+    .control-buttons {
+        top: 0.5rem;
+        right: 1rem;
+    }
+    
+    .control-btn {
+        width: 38px;
+        height: 38px;
+    }
+    
+    /* Ensure header text is more readable on smaller screens */
+    .main-header {
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .submit-btn {
+        font-size: 0.8rem;
+    }
+    
+    /* Better positioning for the submit button on mobile */
+    .submit-btn-container {
+        position: fixed;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    
+    /* Ensure footer is visible */
+    footer {
+        background-color: rgba(10, 16, 53, 0.7);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    /* If user's system is set to light mode, still keep our dark mode 
+       unless they specifically toggle it with the button */
+    :root {
+        /* Dark mode colors remain as default */
+    }
+} 
